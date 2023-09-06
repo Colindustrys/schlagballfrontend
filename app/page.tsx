@@ -1,9 +1,45 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import axios from 'axios';
+
+async function getJson() {
+  console.log("getJson");
+  
+  let json: JSON;
+  try {
+    console.log("before get request");
+    
+    const { data } = await axios.get('http://10.12.32.21:5000/get_json');
+    console.log("after get request");
+    
+    json = data.userDetails;
+    console.log(json);
+    
+  } catch (error) {
+    console.log("error");
+    
+  }
+}
+getJson();
+console.log("test");
+
+try {
+  axios.get('http://10.12.32.21:5000/get_json')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+} catch (error) {
+  
+}
+
 
 export default function Home() {
   return (
     <main className={styles.main}>
+      <p>json</p>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -49,7 +85,7 @@ export default function Home() {
           <h2>
             Docs <span>-&gt;</span>
           </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
+          <p>Find in-depth information about Next.js features and API lalalal.</p>
         </a>
 
         <a
