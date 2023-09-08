@@ -1,131 +1,57 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import axios from 'axios';
+"use client"
+import { useState } from "react";
+import Cookies from "js-cookie";
 
-async function getJson() {
-  console.log("getJson");
-  
-  let json: JSON;
-  try {
-    console.log("before get request");
-    
-    const { data } = await axios.get('http://10.12.32.21:5000/get_json');
-    console.log("after get request");
-    
-    json = data.userDetails;
-    console.log(json);
-    
-  } catch (error) {
-    console.log("error");
-    
-  }
-}
-getJson();
-console.log("test");
-
-try {
-  axios.get('http://10.12.32.21:5000/get_json')
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-} catch (error) {
-  
+let myJson = {
+  "team1name": "Eagles",
+  "team1points": 30, 
+  "team2name": "lakers",
+  "team2points": 20
 }
 
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <p>json</p>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  const [json, setJson] = useState(myJson);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API lalalal.</p>
-        </a>
+  function pointTeam1() {
+    let newJson = JSON.parse(JSON.stringify(json));
+    newJson.team1points++;
+    setJson(newJson)
+  }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+  function pointTeam2() {
+    let newJson = JSON.parse(JSON.stringify(json));
+    newJson.team2points++;
+    setJson(newJson)
+  }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+  function loadData() {
+    const storedData = Cookies.get('myJsonData');
+    if (storedData) {
+      setJson(JSON.parse(storedData));
+    }
+  }
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+  function saveData() {
+    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax' });
+  }
+
+  return <>
+
+    <header>
+      <h1>My Page</h1>
+    </header>
+    <body>
+      <p>{json.team1name}: {json.team1points}</p>
+      <p>{json.team2name}: {json.team2points}</p>
+      <button onClick={pointTeam1}>point for team 1</button>
+      <button onClick={pointTeam2}>point for team 2</button>
+
+      <button onClick={loadData}>load</button>
+      <button onClick={saveData}>save</button>
+    </body>
+
+  </>
+
 }
