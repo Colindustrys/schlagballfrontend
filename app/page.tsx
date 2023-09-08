@@ -40,7 +40,7 @@ export default function Home() {
   }
 
   function saveData() {
-    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax' });
+    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 7 });
   }
 
   return <>
