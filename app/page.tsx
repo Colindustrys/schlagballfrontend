@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 let myJson = {
@@ -10,7 +10,13 @@ let myJson = {
 }
 
 
+
+
 export default function Home() {
+
+  useEffect(() => {
+    loadData()
+  }, []);
 
   const [json, setJson] = useState(myJson);
 
