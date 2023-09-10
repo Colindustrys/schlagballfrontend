@@ -1,6 +1,7 @@
 "use client"
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import TestComponent from "../components/testComponent";
 
 let myJson = {
   "team1name": "Eagles",
@@ -8,9 +9,6 @@ let myJson = {
   "team2name": "lakers",
   "team2points": 20
 }
-
-
-
 
 export default function Home() {
 
@@ -43,21 +41,21 @@ export default function Home() {
     Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 7 });
   }
 
-  return <>
+  return (
+    <div>
+      <header>
+        <h1>My Page</h1>
+      </header>
+      <body>
+        <p>{json.team1name}: {json.team1points}</p>
+        <p>{json.team2name}: {json.team2points}</p>
+        <button onClick={pointTeam1}>point for team 1</button>
+        <button onClick={pointTeam2}>point for team 2</button>
 
-    <header>
-      <h1>My Page</h1>
-    </header>
-    <body>
-      <p>{json.team1name}: {json.team1points}</p>
-      <p>{json.team2name}: {json.team2points}</p>
-      <button onClick={pointTeam1}>point for team 1</button>
-      <button onClick={pointTeam2}>point for team 2</button>
+        <TestComponent loadData={loadData} saveData={saveData}/>
+        
+      </body>
+    </div>
 
-      <button onClick={loadData}>load</button>
-      <button onClick={saveData}>save</button>
-    </body>
-
-  </>
-
+  );
 }
