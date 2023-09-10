@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import TestComponent from "../components/testComponent";
+import styles from "./page.module.css"
 
 let myJson = {
   "team1name": "Eagles",
@@ -46,15 +47,15 @@ export default function Home() {
       <header>
         <h1>My Page</h1>
       </header>
-      <body>
+      
+      <main>
         <p>{json.team1name}: {json.team1points}</p>
         <p>{json.team2name}: {json.team2points}</p>
         <button onClick={pointTeam1}>point for team 1</button>
         <button onClick={pointTeam2}>point for team 2</button>
 
         <TestComponent loadData={loadData} saveData={saveData}/>
-        
-      </body>
+      </main>
     </div>
 
   );
