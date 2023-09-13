@@ -11,7 +11,6 @@ import TeamNameDisplay from "@/components/teamNameDisplay";
 import PlayerSelector from "@/components/playerSelector";
 import PointButtons from "@/components/pointButtons";
 
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import EventLog from "@/components/eventLog"
 import TimerStartButton from "@/components/timerStartButton"
@@ -29,6 +28,8 @@ let myJson: GameData = {
   "events": []
 }
 
+let myEvents: EventT[] = []
+
 export default function Home() {
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Home() {
 
 
   const [json, setJson] = useState(myJson);
+  const [events, setEvents] = useState(myEvents)
 
   function pointTeam1() {
     let newJson = JSON.parse(JSON.stringify(json));
@@ -51,14 +53,20 @@ export default function Home() {
   }
 
   function loadData() {
-    const storedData = Cookies.get('myJsonData');
+    let storedData = Cookies.get('myJsonData');
     if (storedData) {
       setJson(JSON.parse(storedData));
+    }
+
+    storedData = Cookies.get('myEventData');
+    if (storedData) {
+      setEvents(JSON.parse(storedData));
     }
   }
 
   function saveData() {
-    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 7 });
+    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
+    Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
   }
 
   function nextPlayer() {
@@ -87,16 +95,17 @@ export default function Home() {
   }
 
   function addLog(team: number, player: number, text: string) {
-    let newJson: GameData = JSON.parse(JSON.stringify(json));
-    newJson.events.push({
+    let newEvents: EventT[] = JSON.parse(JSON.stringify(events));
+    newEvents.push({
       "timestampt": Date.now(),
       "team": team,
       "player": player,
       "text": text
     })
-    console.log(newJson);
     
-    setJson(newJson)
+    setEvents(newEvents)
+    
+    
   }
 
   function point(team: number, player: number, art: string) {
@@ -118,7 +127,14 @@ export default function Home() {
 
   function temp() {
     //Cookies.remove('')
-    window.location.href = "/menu";
+    //window.location.href = "/menu";
+
+    let events: EventT[] = [
+      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+    ]
+    console.log(JSON.stringify(events));
+    
   }
 
   function endGame() {
@@ -152,7 +168,7 @@ export default function Home() {
 
         <PointButtons pointFunc={point} team={2}/>
         <a href="/menu">menu</a>
-        <EventLog json={json}/>
+        <EventLog events={events}/>
         <TimerStartButton json={json}/>
       </main>
     </div>

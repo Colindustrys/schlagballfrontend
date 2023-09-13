@@ -61,6 +61,9 @@ export default function Menu() {
     //save cookie 
     Cookies.set('myJsonData', JSON.stringify(newGame), { sameSite: 'lax', expires: 365 });
 
+    //save empty events 
+    Cookies.set('myEventData', JSON.stringify([]), { sameSite: 'lax', expires: 365 });
+
     //direct to game page
     window.location.href = "/";
     

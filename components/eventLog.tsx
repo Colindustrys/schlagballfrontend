@@ -1,17 +1,17 @@
-import React, { MouseEventHandler, FC, useEffect} from 'react';
+import React, { MouseEventHandler, FC, useEffect, Key} from 'react';
 import styles from "../app/page.module.css"
 import GameData from "@/types/gameData";
 import EventT from "@/types/eventT";
 
 interface eventLog {
-    json: GameData
+    events: EventT[]
 }
 
-function render(event: EventT) {
+function render(event: EventT, key: Key) {
     const date = new Date(event.timestampt);
 
     return (
-        <tr>
+        <tr key={key}>
             <th>{date.getHours()}:{date.getMinutes()}</th>
             <th>{event.text}</th>
             <th>{event.team}</th>
@@ -20,10 +20,10 @@ function render(event: EventT) {
     )
 }
 
-const EventLog: React.FC<eventLog> = ({json}) => {
+const EventLog: React.FC<eventLog> = ({events}) => {
     useEffect(() => {
 
-    }, [json]);
+    }, [events]);
 
   return (
     <div>
@@ -35,7 +35,7 @@ const EventLog: React.FC<eventLog> = ({json}) => {
                     <th>Team</th>
                     <th>Spieler</th>
                 </tr>
-                {json.events.map(render)}
+                {events.map(render)}
             </tbody>
         </table>
     </div>
