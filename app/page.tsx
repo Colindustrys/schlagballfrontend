@@ -2,13 +2,17 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import TestComponent from "../components/testComponent";
-import styles from "./page.module.css"
+import CurrentPlayer from "@/components/currentPlayer";
+import GameData from "@/types/gameData";
 
-let myJson = {
+let myJson: GameData = {
   "team1name": "Eagles",
   "team1points": 30, 
   "team2name": "lakers",
-  "team2points": 20
+  "team2points": 20,
+  "currentTeam": 0,
+  "team1currentPlayer": 0,
+  "team2currentPlayer": 0,
 }
 
 export default function Home() {
@@ -42,6 +46,35 @@ export default function Home() {
     Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 7 });
   }
 
+  function nextPlayer() {
+    let newJson: GameData = JSON.parse(JSON.stringify(json));
+
+    //check current team
+    if (newJson.currentTeam == 0) {
+      //team 1
+      newJson.team1currentPlayer++;
+      newJson.team1currentPlayer = newJson.team1currentPlayer % 12;
+    } else {
+      //team 2
+      newJson.team2currentPlayer++;
+      newJson.team2currentPlayer = newJson.team2currentPlayer % 12;
+    }
+
+    setJson(newJson)
+  }
+
+  function switchTeam() {
+    let newJson: GameData = JSON.parse(JSON.stringify(json));
+    newJson.currentTeam++;
+    newJson.currentTeam = newJson.currentTeam % 2
+
+    setJson(newJson)
+  }
+
+  function temp() {
+    Cookies.remove('myGame')
+  }
+
   return (
     <div>
       <header>
@@ -54,7 +87,11 @@ export default function Home() {
         <button onClick={pointTeam1}>point for team 1</button>
         <button onClick={pointTeam2}>point for team 2</button>
 
+        <button onClick={temp}>temp</button>
+
         <TestComponent loadData={loadData} saveData={saveData}/>
+        <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
+        <button onClick={switchTeam}>Toter Wechsel</button>
       </main>
     </div>
 
