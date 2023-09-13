@@ -40,7 +40,7 @@ export default function menu() {
   }
 
   function newGame(team1name: string, team2name: string, timer: number) {
-    
+  
     //make new game object 
     let newGame: GameData = {
       team1name: team1name,
@@ -52,6 +52,9 @@ export default function menu() {
       team2currentPlayer: 0,
 
       currentTeam: 0,
+
+      setGameLength: timer,
+      timestamp: Date.now(),
 
     }
 

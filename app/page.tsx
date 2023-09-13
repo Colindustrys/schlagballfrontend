@@ -15,7 +15,7 @@ let myJson: GameData = {
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
   "timestamp": Date.now(),
-  "setGameLength": 10
+  "setGameLength": 3
 }
 
 export default function Home() {
