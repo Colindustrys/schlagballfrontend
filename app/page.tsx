@@ -72,7 +72,7 @@ export default function Home() {
   }
 
   function temp() {
-    Cookies.remove('myGame')
+    //window.location.href = "/menu";
   }
 
   return (
@@ -92,6 +92,8 @@ export default function Home() {
         <TestComponent loadData={loadData} saveData={saveData}/>
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
         <button onClick={switchTeam}>Toter Wechsel</button>
+        <a href="/menu">menu</a>
+
       </main>
     </div>
 
