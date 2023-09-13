@@ -75,7 +75,7 @@ export default function Home() {
   }
 
   function temp() {
-    Cookies.remove('myGame')
+    //window.location.href = "/menu";
   }
 
   function endGame() {
@@ -100,6 +100,8 @@ export default function Home() {
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
         <TimeLeft json={json} endGameCallback={endGame}/>
         <button onClick={switchTeam}>Toter Wechsel</button>
+        <a href="/menu">menu</a>
+
       </main>
     </div>
 
