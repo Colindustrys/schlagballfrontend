@@ -4,7 +4,9 @@ import Cookies from "js-cookie";
 import TestComponent from "../components/testComponent";
 import CurrentPlayer from "@/components/currentPlayer";
 import GameData from "@/types/gameData";
+import EventT from "@/types/eventT";
 import TimeLeft from "@/components/timeLeft";
+import EventLog from "@/components/eventLog"
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -15,7 +17,8 @@ let myJson: GameData = {
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
   "timestamp": Date.now(),
-  "setGameLength": 3
+  "setGameLength": 3,
+  "events": []
 }
 
 export default function Home() {
@@ -23,6 +26,7 @@ export default function Home() {
   useEffect(() => {
     loadData()
   }, []);
+
 
   const [json, setJson] = useState(myJson);
 
@@ -102,6 +106,7 @@ export default function Home() {
         <TimeLeft json={json} endGameCallback={endGame}/>
         <button onClick={switchTeam}>Toter Wechsel</button>
         <a href="/menu">menu</a>
+        <EventLog json={json}/>
 
       </main>
     </div>
