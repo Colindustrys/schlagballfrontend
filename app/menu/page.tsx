@@ -65,6 +65,7 @@ export default function menu() {
 
   function loadGame() {
     //link to game page 
+    window.location.href = "/";
   }
   
 

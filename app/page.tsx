@@ -72,7 +72,8 @@ export default function Home() {
   }
 
   function temp() {
-    //window.location.href = "/menu";
+    //Cookies.remove('')
+    window.location.href = "/menu";
   }
 
   return (
