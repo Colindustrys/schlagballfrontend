@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import TestComponent from "../components/testComponent";
 import CurrentPlayer from "@/components/currentPlayer";
 import GameData from "@/types/gameData";
+import EventT from "@/types/eventT";
 import TimeLeft from "@/components/timeLeft";
 import ScoreBoard from "@/components/score";
 import TeamNameDisplay from "@/components/teamNameDisplay";
@@ -12,6 +13,7 @@ import PointButtons from "@/components/pointButtons";
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import EventLog from "@/components/eventLog"
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -22,7 +24,8 @@ let myJson: GameData = {
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
   "timestamp": Date.now(),
-  "setGameLength": 3
+  "setGameLength": 3,
+  "events": []
 }
 
 export default function Home() {
@@ -30,6 +33,7 @@ export default function Home() {
   useEffect(() => {
     loadData()
   }, []);
+
 
   const [json, setJson] = useState(myJson);
 
@@ -131,6 +135,8 @@ export default function Home() {
         <p>Punkte Team 2</p>
 
         <PointButtons pointFunc={point} team={2}/>
+        <a href="/menu">menu</a>
+        <EventLog json={json}/>
 
       </main>
     </div>

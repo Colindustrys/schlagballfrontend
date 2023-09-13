@@ -6,11 +6,13 @@ interface timeLeft {
     endGameCallback: Function
 }
 
-const TimeLeft: React.FC<timeLeft> = ({json, endGameCallback}) => {
+const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
     const [timeMinutes, setMinutes] = useState(0);
     const [timeSeconds, setSeconds] = useState(0)
 
     var canAlert = true;
+    var startDate = new Date(json.timestamp);
+    
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -36,7 +38,10 @@ const TimeLeft: React.FC<timeLeft> = ({json, endGameCallback}) => {
         return () => clearInterval(intervalId);
     }, [json]);
 
-    return <div>{timeMinutes}:{timeSeconds}</div>;
+    return <div>
+        <div>Läuft seit {startDate.getHours()}:{startDate.getMinutes()}, {startDate.toDateString()}</div>
+        <div>Läuft noch {timeMinutes}:{timeSeconds} minuten</div>
+    </div>;
 };
 
 export default TimeLeft;

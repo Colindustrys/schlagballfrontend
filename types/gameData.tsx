@@ -1,3 +1,5 @@
+import EventT from "@/types/eventT";
+
 interface GameData {
   team1name: string;
   team1points: number;
@@ -11,6 +13,7 @@ interface GameData {
 
   timestamp: number,
   setGameLength: number
+  events: EventT[]
 }
 
 export default GameData;
