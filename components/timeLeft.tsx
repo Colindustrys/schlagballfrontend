@@ -8,7 +8,7 @@ interface timeLeft {
 
 const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
     const [timeMinutes, setMinutes] = useState(0);
-    const [timeSeconds, setSeconds] = useState(0)
+    const [timeSeconds, setSeconds] = useState(0);
 
     var canAlert = true;
     var startDate = new Date((json.timestamp === null) ? 0 : json.timestamp );

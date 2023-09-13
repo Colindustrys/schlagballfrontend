@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, FC } from 'react';
+import React, { MouseEventHandler, FC, useEffect} from 'react';
 import styles from "../app/page.module.css"
 import GameData from "@/types/gameData";
 import EventT from "@/types/eventT";
@@ -21,6 +21,9 @@ function render(event: EventT) {
 }
 
 const EventLog: React.FC<eventLog> = ({json}) => {
+    useEffect(() => {
+
+    }, [json]);
 
   return (
     <div>
