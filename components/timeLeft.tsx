@@ -14,7 +14,7 @@ const TimeLeft: React.FC<timeLeft> = ({json, endGameCallback}) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            const difference: number = 1 * 60 - ((Date.now() - json.timestamp) / 1000);
+            const difference: number = json.setGameLength * 60 - ((Date.now() - json.timestamp) / 1000);
         if (difference <= 0) {
             if (canAlert) {
                 canAlert = false;
