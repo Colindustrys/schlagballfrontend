@@ -36,7 +36,7 @@ const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
 
           }, 1000);
         return () => clearInterval(intervalId);
-    }, []);
+    }, [json]);
 
     return <div>
         <div>Läuft seit {startDate.getHours()}:{startDate.getMinutes()}, {startDate.toDateString()}</div>

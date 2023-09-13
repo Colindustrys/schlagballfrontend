@@ -15,7 +15,7 @@ let myJson: GameData = {
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
   "timestamp": Date.now(),
-  "setGameLength": 10
+  "setGameLength": 3
 }
 
 export default function Home() {
@@ -75,7 +75,8 @@ export default function Home() {
   }
 
   function temp() {
-    //window.location.href = "/menu";
+    //Cookies.remove('')
+    window.location.href = "/menu";
   }
 
   function endGame() {
