@@ -25,9 +25,9 @@ const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
                 if (canAlert) {
                     canAlert = false;
                     endGameCallback();
+                    json.timestamp = null;
+                    canAlert = true;
                 }
-                setMinutes(0);
-                setSeconds(0);
             } else {
                 const minutes: number = Math.floor(difference / 60);
                 const seconds: number = Math.round(difference - (minutes * 60));

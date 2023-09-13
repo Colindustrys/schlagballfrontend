@@ -7,7 +7,9 @@ interface timerStartButton {
 
 const TimerStartButton: React.FC<timerStartButton> = ({json}) => {
     function onClick() {
-        json.timestamp = Date.now()
+        if (json.timestamp === null) {
+            json.timestamp = Date.now()
+        }
     }
 
     return (
