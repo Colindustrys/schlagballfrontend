@@ -85,9 +85,24 @@ export default function Home() {
     setJson(newJson)
   }
 
+  function addLog(team: number, player: number, text: string) {
+    let newJson: GameData = JSON.parse(JSON.stringify(json));
+    newJson.events.push({
+      "timestampt": Date.now(),
+      "team": team,
+      "player": player,
+      "text": text
+    })
+    console.log(newJson);
+    
+    setJson(newJson)
+  }
+
   function point(team: number, player: number, art: string) {
     //add event 
     console.log(team + " " + player + " " + art);
+    addLog(team, player, art)
+
 
     if (team == 1) {
       pointTeam1()

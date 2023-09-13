@@ -13,7 +13,7 @@ interface FormProps {
   onSubmit: (data: FormData) => void;
 }
 
-export default function menu() {
+export default function Menu() {
 
   const [formData, setFormData] = useState<FormData>({
     team1name: '',
@@ -55,7 +55,7 @@ export default function menu() {
 
       setGameLength: timer,
       timestamp: Date.now(),
-
+      events: []
     }
 
     //save cookie 

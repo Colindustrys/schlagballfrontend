@@ -12,7 +12,7 @@ const TeamNameDisplay: React.FC<myCurrentPlayer> = ({json, teamNR}) => {
 
   useEffect(() => {
     setTeamNameFunc();
-  }, []);
+  }, [json]);
 
   function setTeamNameFunc() {
     if (teamNR == 1) {
