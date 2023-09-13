@@ -5,6 +5,13 @@ import TestComponent from "../components/testComponent";
 import CurrentPlayer from "@/components/currentPlayer";
 import GameData from "@/types/gameData";
 import TimeLeft from "@/components/timeLeft";
+import ScoreBoard from "@/components/score";
+import TeamNameDisplay from "@/components/teamNameDisplay";
+import PlayerSelector from "@/components/playerSelector";
+import PointButtons from "@/components/pointButtons";
+
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -74,6 +81,21 @@ export default function Home() {
     setJson(newJson)
   }
 
+  function point(team: number, player: number, art: string) {
+    //add event 
+    console.log(team + " " + player + " " + art);
+
+    if (team == 1) {
+      pointTeam1()
+    } else {
+      pointTeam2()
+    }
+
+    if (art == "Abwurfpunkt") {
+      switchTeam();
+    }
+  }
+
   function temp() {
     //Cookies.remove('')
     window.location.href = "/menu";
@@ -90,10 +112,10 @@ export default function Home() {
       </header>
       
       <main>
-        <p>{json.team1name}: {json.team1points}</p>
-        <p>{json.team2name}: {json.team2points}</p>
-        <button onClick={pointTeam1}>point for team 1</button>
-        <button onClick={pointTeam2}>point for team 2</button>
+        
+        <TeamNameDisplay json={json} teamNR={1}/>
+        <ScoreBoard json={json}/>
+        <TeamNameDisplay json={json} teamNR={2}/>
 
         <button onClick={temp}>temp</button>
 
@@ -101,7 +123,14 @@ export default function Home() {
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
         <TimeLeft json={json} endGameCallback={endGame}/>
         <button onClick={switchTeam}>Toter Wechsel</button>
-        <a href="/menu">menu</a>
+        
+        <p>Punkte Team 1</p>
+
+        <PointButtons pointFunc={point} team={1}/>
+
+        <p>Punkte Team 2</p>
+
+        <PointButtons pointFunc={point} team={2}/>
 
       </main>
     </div>
