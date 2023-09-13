@@ -35,7 +35,7 @@ const EventLog: React.FC<eventLog> = ({events}) => {
                     <th>Team</th>
                     <th>Spieler</th>
                 </tr>
-                {events.map(render)}
+                {events.slice().reverse().map(render)}
             </tbody>
         </table>
     </div>
