@@ -11,7 +11,7 @@ interface GameData {
 
   currentTeam: number;
 
-  timestamp: number,
+  timestamp: number | null,
   setGameLength: number
   events: EventT[]
 }

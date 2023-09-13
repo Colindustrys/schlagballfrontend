@@ -8,32 +8,34 @@ interface timeLeft {
 
 const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
     const [timeMinutes, setMinutes] = useState(0);
-    const [timeSeconds, setSeconds] = useState(0)
+    const [timeSeconds, setSeconds] = useState(0);
 
     var canAlert = true;
-    var startDate = new Date(json.timestamp);
+    var startDate = new Date((json.timestamp === null) ? 0 : json.timestamp );
     
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            const difference: number = json.setGameLength * 60 - ((Date.now() - json.timestamp) / 1000);
-        if (difference <= 0) {
-            if (canAlert) {
-                canAlert = false;
-                endGameCallback();
-            }
-            setMinutes(0);
-            setSeconds(0);
+        if (json.timestamp === null) {
+            setMinutes(0)
+            setSeconds(0)
         } else {
-            const minutes: number = Math.floor(difference / 60);
-            const seconds: number = Math.round(difference - (minutes * 60));
+            const difference: number = json.setGameLength * 60 - ((Date.now() - json.timestamp) / 1000);
+            if (difference <= 0) {
+                if (canAlert) {
+                    canAlert = false;
+                    endGameCallback();
+                }
+                setMinutes(0);
+                setSeconds(0);
+            } else {
+                const minutes: number = Math.floor(difference / 60);
+                const seconds: number = Math.round(difference - (minutes * 60));
 
-            setMinutes(minutes);
-            setSeconds(seconds);
+                setMinutes(minutes);
+                setSeconds(seconds);
+            }
         }
-
-        
-
           }, 1000);
         return () => clearInterval(intervalId);
     }, [json]);
