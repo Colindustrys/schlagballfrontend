@@ -7,6 +7,7 @@ import GameData from "@/types/gameData";
 import EventT from "@/types/eventT";
 import TimeLeft from "@/components/timeLeft";
 import EventLog from "@/components/eventLog"
+import TimerStartButton from "@/components/timerStartButton"
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -16,7 +17,7 @@ let myJson: GameData = {
   "currentTeam": 0,
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
-  "timestamp": Date.now(),
+  "timestamp": null,
   "setGameLength": 3,
   "events": []
 }
@@ -107,7 +108,7 @@ export default function Home() {
         <button onClick={switchTeam}>Toter Wechsel</button>
         <a href="/menu">menu</a>
         <EventLog json={json}/>
-
+        <TimerStartButton json={json}/>
       </main>
     </div>
 
