@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Components
+| Component Name | Input            | Callbacks       | Explanation                                                                                       |
+|----------------|------------------|-----------------|---------------------------------------------------------------------------------------------------|
+| Timer          | end-timestamp    | `Timer-ran-out` | The timer counts down until it hits the end-timestamp, it will then open the `end-game` component |
+| Point Buttons  | team             | `add_point`     | 4 buttons for the 4 types of points                                                               |
+| Score-board    | points-use-state |                 | Updates the score of the 2 teams                                                                  |
+
+
 ## Getting Started
 
 First, run the development server:

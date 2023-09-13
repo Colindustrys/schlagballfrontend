@@ -9,6 +9,8 @@ interface GameData {
 
   currentTeam: number;
 
+  timestamp: number,
+  setGameLength: number
 }
 
 export default GameData;

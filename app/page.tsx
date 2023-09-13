@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import TestComponent from "../components/testComponent";
 import CurrentPlayer from "@/components/currentPlayer";
 import GameData from "@/types/gameData";
+import TimeLeft from "@/components/timeLeft";
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -13,6 +14,8 @@ let myJson: GameData = {
   "currentTeam": 0,
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
+  "timestamp": Date.now(),
+  "setGameLength": 10
 }
 
 export default function Home() {
@@ -76,6 +79,10 @@ export default function Home() {
     window.location.href = "/menu";
   }
 
+  function endGame() {
+    alert("Game Over!");
+  }
+
   return (
     <div>
       <header>
@@ -92,6 +99,7 @@ export default function Home() {
 
         <TestComponent loadData={loadData} saveData={saveData}/>
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
+        <TimeLeft json={json} endGameCallback={endGame}/>
         <button onClick={switchTeam}>Toter Wechsel</button>
         <a href="/menu">menu</a>
 
