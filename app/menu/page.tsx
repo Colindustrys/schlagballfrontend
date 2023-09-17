@@ -59,10 +59,13 @@ export default function Menu() {
     }
 
     //save cookie 
-    Cookies.set('myJsonData', JSON.stringify(newGame), { sameSite: 'lax', expires: 365 });
+    //Cookies.set('myJsonData', JSON.stringify(newGame), { sameSite: 'lax', expires: 365 });
+    localStorage.setItem("myGameData", JSON.stringify(newGame))
+    
 
     //save empty events 
-    Cookies.set('myEventData', JSON.stringify([]), { sameSite: 'lax', expires: 365 });
+    //Cookies.set('myEventData', JSON.stringify([]), { sameSite: 'lax', expires: 365 });
+    localStorage.setItem("myEventsData", JSON.stringify([]))
 
     //direct to game page
     window.location.href = "/";

@@ -36,14 +36,21 @@ export default function Home() {
     loadData()
   }, []);
 
-
   const [json, setJson] = useState(myJson);
   const [events, setEvents] = useState(myEvents)
+
+  useEffect(() => {
+    saveData()
+  }, [json, events]);
 
   function pointTeam1() {
     let newJson = JSON.parse(JSON.stringify(json));
     newJson.team1points++;
     setJson(newJson)
+    console.log("point team 1 json: ");
+    console.log(json);
+    
+    
   }
 
   function pointTeam2() {
@@ -53,20 +60,24 @@ export default function Home() {
   }
 
   function loadData() {
-    let storedData = Cookies.get('myJsonData');
+    let storedData = localStorage.getItem("myGameData");
     if (storedData) {
       setJson(JSON.parse(storedData));
     }
 
-    storedData = Cookies.get('myEventData');
+    storedData = localStorage.getItem("myEventsData");
     if (storedData) {
       setEvents(JSON.parse(storedData));
     }
+
   }
 
   function saveData() {
-    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
-    Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
+    // Cookies.set('myGameData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
+    // Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
+
+    localStorage.setItem("myGameData", JSON.stringify(json))
+    localStorage.setItem("myEventsData", JSON.stringify(events))
   }
 
   function nextPlayer() {
@@ -86,7 +97,9 @@ export default function Home() {
     setJson(newJson)
   }
 
-  function switchTeam() {
+  async function switchTeam() {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     let newJson: GameData = JSON.parse(JSON.stringify(json));
     newJson.currentTeam++;
     newJson.currentTeam = newJson.currentTeam % 2
@@ -113,13 +126,24 @@ export default function Home() {
     console.log(team + " " + player + " " + art);
     addLog(team, player, art)
 
+    console.log(team + " " + player + " " + art);
+    
+    
+    
+
 
     if (team == 1) {
+      console.log(team);
+      
       pointTeam1()
     } else {
+      console.log(team);
+      
       pointTeam2()
     }
-
+    //console.log(json);
+    
+    //hier ist ein problem mit dem usestate da in switch team der usestate json genutzt wird bevor das update von pointTeam() da ist im usestate 
     if (art == "Abwurfpunkt") {
       switchTeam();
     }
@@ -129,11 +153,20 @@ export default function Home() {
     //Cookies.remove('')
     //window.location.href = "/menu";
 
-    let events: EventT[] = [
-      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
-      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
-    ]
-    console.log(JSON.stringify(events));
+    // let events: EventT[] = [
+    //   {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+    //   {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+    // ]
+    // console.log(JSON.stringify(events));  
+
+    localStorage.setItem("myEventsData", JSON.stringify(events))
+    localStorage.removeItem('test');
+
+    // Remove data from localStorage
+    //localStorage.removeItem('userData');
+
+    
+
     
   }
 
@@ -142,8 +175,11 @@ export default function Home() {
   }
 
   function clearCookies() {
-    Cookies.remove("myJsonData")
-    Cookies.remove("myEventData")
+    // Cookies.remove("myJsonData")
+    // Cookies.remove("myEventData")
+
+    localStorage.removeItem('myGameData');
+    localStorage.removeItem('myEventsData');
     window.location.href = "/menu";
   }
 
