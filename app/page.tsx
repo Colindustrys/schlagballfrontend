@@ -46,17 +46,15 @@ export default function Home() {
   function pointTeam1() {
     let newJson = JSON.parse(JSON.stringify(json));
     newJson.team1points++;
-    setJson(newJson)
-    console.log("point team 1 json: ");
-    console.log(json);
-    
-    
+    setJson(newJson)  
+    return newJson  
   }
 
   function pointTeam2() {
     let newJson = JSON.parse(JSON.stringify(json));
     newJson.team2points++;
     setJson(newJson)
+    return newJson
   }
 
   function loadData() {
@@ -97,10 +95,12 @@ export default function Home() {
     setJson(newJson)
   }
 
-  async function switchTeam() {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    let newJson: GameData = JSON.parse(JSON.stringify(json));
+  function toterWechsel() {
+    switchTeam(JSON.parse(JSON.stringify(json)))
+  }
+
+  function switchTeam(newJson: GameData) {
+    //let newJson: GameData = JSON.parse(JSON.stringify(json));
     newJson.currentTeam++;
     newJson.currentTeam = newJson.currentTeam % 2
 
@@ -130,22 +130,22 @@ export default function Home() {
     
     
     
-
+    let newJson: GameData
 
     if (team == 1) {
       console.log(team);
       
-      pointTeam1()
+      newJson = pointTeam1()
     } else {
       console.log(team);
       
-      pointTeam2()
+      newJson = pointTeam2()
     }
     //console.log(json);
     
     //hier ist ein problem mit dem usestate da in switch team der usestate json genutzt wird bevor das update von pointTeam() da ist im usestate 
     if (art == "Abwurfpunkt") {
-      switchTeam();
+      switchTeam(newJson);
     }
   }
 
@@ -200,7 +200,7 @@ export default function Home() {
         <TestComponent loadData={loadData} saveData={saveData}/>
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
         <TimeLeft json={json} endGameCallback={endGame}/>
-        <button onClick={switchTeam}>Toter Wechsel</button>
+        <button onClick={toterWechsel}>Toter Wechsel</button>
         
         <p>Punkte Team 1</p>
 
