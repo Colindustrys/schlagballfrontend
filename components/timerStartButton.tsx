@@ -3,18 +3,19 @@ import GameData from '@/types/gameData';
 
 interface timerStartButton {
     json: GameData
+    onClickFunction: Function
 }
 
-const TimerStartButton: React.FC<timerStartButton> = ({json}) => {
-    function onClick() {
-        if (json.timestamp === null) {
-            json.timestamp = Date.now()
-        }
-    }
+const TimerStartButton: React.FC<timerStartButton> = ({json, onClickFunction}) => {
+    // function onClick() {
+    //     if (json.timestamp === null) {
+    //         json.timestamp = Date.now()
+    //     }
+    // }
 
     return (
       <div>
-        <button onClick={onClick}>Start Timer</button>
+        <button onClick={() => onClickFunction()}>Start Timer</button>
       </div>
     );
   }

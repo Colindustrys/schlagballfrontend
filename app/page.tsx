@@ -183,6 +183,13 @@ export default function Home() {
     window.location.href = "/menu";
   }
 
+  function timerStart() {
+    if (json.timestamp === null) {
+      json.timestamp = Date.now()
+    }
+    saveData()
+  }
+
   return (
     <div>
       <header>
@@ -212,7 +219,7 @@ export default function Home() {
         <a href="/menu">menu</a>
         <button onClick={clearCookies}>DeleteGame</button>
         <EventLog events={events}/>
-        <TimerStartButton json={json}/>
+        <TimerStartButton json={json} onClickFunction={timerStart}/>
       </main>
     </div>
 
