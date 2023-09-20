@@ -96,25 +96,25 @@ export default function Menu() {
         </div>
 
           <form onSubmit={onSumbitHandler}>
-            <div id="sides" className=" grid grid-cols-2 text-3xl font-bold">
-              <div id="team1" className=" px-5 flex items-start justify-center flex-col">
+            <div id="sides" className="flex flex-wrap items-center justify-center text-3xl font-bold">
+              <div id="team1" className=" bg-pink-600 px-5 flex items-start justify-center flex-col">
                 <div className="p-5">
                   <label htmlFor="input1">Team 1 Name: </label>
                   <input className=" border-4 border-black" placeholder="Team Name 1" type="text" id="input1" name="team1name" value={formData.team1name} onChange={handleChange}/>
                 </div>
                 <div className="p-5">
                   <label htmlFor="input1_5">Team 1 Spieler Anzahl: </label>
-                  <input className=" border-4 border-black" type="number" id="input1_5" name="team1Size" value={formData.team1Size} onChange={handleChange}/>
+                  <input className=" border-4 border-black w-20" type="number" id="input1_5" name="team1Size" value={formData.team1Size} onChange={handleChange}/>
                 </div>
               </div>
-              <div id="team2" className=" px-5 flex items-end justify-center flex-col">
+              <div id="team2" className=" bg-amber-500 px-5 flex items-end justify-center flex-col">
                 <div className="p-5">
-                  <label htmlFor="input2">Team 2 Name</label>
-                  <input className=" border-4 border-black" placeholder="Team Name 2" type="text" id="input2" name="team2name" value={formData.team2name} onChange={handleChange}/>
+                  <label htmlFor="input2">Team 2 Name: </label>
+                  <input className="border-4 border-black" placeholder="Team Name 2" type="text" id="input2" name="team2name" value={formData.team2name} onChange={handleChange}/>
                 </div>
                 <div className="p-5">
                   <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
-                  <input className=" border-4 border-black" type="number" id="input2_5" name="team2Size" value={formData.team2Size} onChange={handleChange}/>
+                  <input className=" border-4 border-black w-20" type="number" id="input2_5" name="team2Size" value={formData.team2Size} onChange={handleChange}/>
                 </div>
               </div>
             </div>

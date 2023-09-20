@@ -30,10 +30,10 @@ const EventLog: React.FC<eventLog> = ({events}) => {
     }, [events]);
 
   return (events.length > 0) && (
-    
-    <div className='relative overflow-x-auto flex items-center justify-center'>
+    // relative overflow-x-auto flex items-center justify-center
+    <div className='flex items-center justify-center'>
         <table>
-            <tbody className='border border-black border-4 p-10 mx-10 text-left'>
+            <tbody className='border border-black border-4 text-left'>
                 <tr>
                     <th className='table-element col-name'>Uhrzeit</th>
                     <th className='table-element col-name'>Punkt</th>
