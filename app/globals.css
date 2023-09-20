@@ -5,3 +5,25 @@
 .main {
   background-color: blue;
 }
+
+.point-button {
+  @apply bg-blue-100 active:bg-blue-400 py-2.5 mb-2 rounded-full prevent-select;
+}
+
+.player-select-button {
+  @apply bg-amber-100 active:bg-amber-400 p-2.5 m-0.5 mb-2 rounded-full prevent-select;
+}
+
+.table-element {
+  @apply p-5 border border-black border-2;
+}
+
+.col-name {
+  @apply font-bold text-2xl;
+}
+
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}

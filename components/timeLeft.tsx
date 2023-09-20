@@ -40,9 +40,9 @@ const TimeLeft: React.FC<timeLeft> = ({json,  endGameCallback}) => {
         return () => clearInterval(intervalId);
     }, [json]);
 
-    return <div>
-        <div>Läuft seit {startDate.getHours()}:{startDate.getMinutes()}, {startDate.toDateString()}</div>
-        <div>Läuft noch {timeMinutes}:{timeSeconds} minuten</div>
+    return <div className='text-center content-center'>
+        <div className='pt-5'>{startDate.getHours()}:{startDate.getMinutes()}, {startDate.toDateString()}</div>
+        <div className='font-bold text-3xl mx-5 p-5'>{timeMinutes}:{timeSeconds}</div>
     </div>;
 };
 

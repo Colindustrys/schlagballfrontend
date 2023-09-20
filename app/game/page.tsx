@@ -194,36 +194,51 @@ export default function Home() {
 
   return (
     <div>
-      <header>
-        <h1 className="text-3xl font-bold underline">My Page</h1>
+      <header className="text-center my-5">
+            <h1 className="text-3xl font-bold underline text-center">Schlagball</h1>
       </header>
-      
-      <main>
-        
-        <TeamNameDisplay json={json} teamNR={1}/>
-        <ScoreBoard json={json}/>
-        <TeamNameDisplay json={json} teamNR={2}/>
-
-        <button onClick={temp}>temp</button>
-
-        <TestComponent loadData={loadData} saveData={saveData}/>
-        <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
-        <TimeLeft json={json} endGameCallback={endGame}/>
-        <button onClick={toterWechsel}>Toter Wechsel</button>
-        
-        <p>Punkte Team 1</p>
-
-        <PointButtons pointFunc={point} team={1}/>
-
-        <p>Punkte Team 2</p>
-
-        <PointButtons pointFunc={point} team={2}/>
-        <a href="/">menu</a>
-        <button onClick={clearCookies}>DeleteGame</button>
-        <EventLog events={events}/>
-        <TimerStartButton json={json} onClickFunction={timerStart}/>
-      </main>
+      <div className="container mx-auto">
+        <div className="grid grid-cols-3 gap-4">
+          
+            <div id="storage" className="flex items-center justify-center">
+              <TestComponent loadData={loadData} saveData={saveData} clearCookies={clearCookies}/>
+            </div>
+            <div id="timer" className="">
+              <TimeLeft json={json} endGameCallback={endGame}/>
+            </div>
+            <div></div>
+            <div id="teamName1" className='text-4xl font-bold p-5 text-center'>
+              <TeamNameDisplay json={json} teamNR={1}/>
+            </div>
+            <div id="score" className="flex items-center justify-center">
+              <ScoreBoard json={json}/>
+            </div>
+            <div id="teamName2" className='text-4xl font-bold p-5 text-center'>
+              <TeamNameDisplay json={json} teamNR={2}/>
+            </div>
+            <div id="team1points">
+              <PointButtons pointFunc={point} team={1}/>
+            </div>
+            <div id="currentStatus" className="flex items-center justify-center">
+              <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
+            </div>
+            <div id="team2points">
+              <PointButtons pointFunc={point} team={2}/>
+            </div>
+            <div></div>
+            <div className=" text-center felx items-center justify-center">
+              <button className="bg-white active:bg-blue-200 p-5 px-5 border-black border-2 font-bold rounded-full prevent-select" onClick={toterWechsel}>Toter Wechsel</button>
+            </div>
+            <div></div>
+        </div>
+      </div>
+      <div className="mt-5">
+          <EventLog events={events}/>
+      </div>
     </div>
-
   );
 }
+
+/*
+<button onClick={temp}>temp</button>
+*/

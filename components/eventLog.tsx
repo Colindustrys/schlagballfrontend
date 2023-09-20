@@ -12,10 +12,10 @@ function render(event: EventT, key: Key) {
 
     return (
         <tr key={key}>
-            <th>{date.getHours()}:{date.getMinutes()}</th>
-            <th>{event.text}</th>
-            <th>{event.team}</th>
-            <th>{event.player}</th>
+            <th  className='table-element'>{date.getHours()}:{date.getMinutes()}</th>
+            <th className='table-element'>{event.text}</th>
+            <th className='table-element'>{event.team}</th>
+            <th className='table-element'>{event.player}</th>
         </tr>
     )
 }
@@ -31,14 +31,14 @@ const EventLog: React.FC<eventLog> = ({events}) => {
 
   return (events.length > 0) && (
     
-    <div>
+    <div className='relative overflow-x-auto flex items-center justify-center'>
         <table>
-            <tbody>
+            <tbody className='border border-black border-4 p-10 mx-10 text-left'>
                 <tr>
-                    <th>Uhrzeit</th>
-                    <th>Punkt</th>
-                    <th>Team</th>
-                    <th>Spieler</th>
+                    <th className='table-element col-name'>Uhrzeit</th>
+                    <th className='table-element col-name'>Punkt</th>
+                    <th className='table-element col-name'>Team</th>
+                    <th className='table-element col-name'>Spieler</th>
                 </tr>
                 {events.slice().reverse().map(render)}
             </tbody>

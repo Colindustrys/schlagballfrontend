@@ -19,17 +19,17 @@ const PointButtons: React.FC<myPointButtons> = ({pointFunc, team}) => {
   }
 
   return (
-    <div className='currentPlayerBox'>
-      <Popup trigger={<button> Weitschlagpunkt</button>} position={popupPos}>
+    <div className='currentPlayerBox flex flex-col font-bold'>
+      <Popup trigger={<button className='point-button'> Weitschlagpunkt</button>} position={popupPos}>
         <PlayerSelector pointFunc={pointFunc} team={team} art="Weitschlagpunkt"/>
       </Popup>
-      <Popup trigger={<button> Laufpunkt</button>} position={popupPos}>
+      <Popup trigger={<button className='point-button'> Laufpunkt</button>} position={popupPos}>
         <PlayerSelector pointFunc={pointFunc} team={team} art="Laufpunkt"/>
       </Popup>
-      <Popup trigger={<button> Abwurfpunkt</button>} position={popupPos}>
+      <Popup trigger={<button className='point-button'> Abwurfpunkt</button>} position={popupPos}>
         <PlayerSelector pointFunc={pointFunc} team={team} art="Abwurfpunkt"/>
       </Popup>
-      <Popup trigger={<button> Fangpunkt</button>} position={popupPos}>
+      <Popup trigger={<button className='point-button'> Fangpunkt</button>} position={popupPos}>
         <PlayerSelector pointFunc={pointFunc} team={team} art="Fangpunkt"/>
       </Popup>
     </div>
