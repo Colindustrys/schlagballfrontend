@@ -7,9 +7,10 @@ import { PopupPosition } from 'reactjs-popup/dist/types';
 interface myPointButtons {
   pointFunc: Function
   team: number
+  playerCount: number
 }
 
-const PointButtons: React.FC<myPointButtons> = ({pointFunc, team}) => {
+const PointButtons: React.FC<myPointButtons> = ({pointFunc, team, playerCount}) => {
 
   let popupPos: PopupPosition = "center center"
   if (team == 1) {
@@ -21,16 +22,16 @@ const PointButtons: React.FC<myPointButtons> = ({pointFunc, team}) => {
   return (
     <div className='currentPlayerBox flex flex-col font-bold'>
       <Popup trigger={<button className='point-button'> Weitschlagpunkt</button>} position={popupPos}>
-        <PlayerSelector pointFunc={pointFunc} team={team} art="Weitschlagpunkt"/>
+        <PlayerSelector pointFunc={pointFunc} team={team} playerCount={playerCount} art="Weitschlagpunkt"/>
       </Popup>
       <Popup trigger={<button className='point-button'> Laufpunkt</button>} position={popupPos}>
-        <PlayerSelector pointFunc={pointFunc} team={team} art="Laufpunkt"/>
+        <PlayerSelector pointFunc={pointFunc} team={team} playerCount={playerCount} art="Laufpunkt"/>
       </Popup>
       <Popup trigger={<button className='point-button'> Abwurfpunkt</button>} position={popupPos}>
-        <PlayerSelector pointFunc={pointFunc} team={team} art="Abwurfpunkt"/>
+        <PlayerSelector pointFunc={pointFunc} team={team} playerCount={playerCount} art="Abwurfpunkt"/>
       </Popup>
       <Popup trigger={<button className='point-button'> Fangpunkt</button>} position={popupPos}>
-        <PlayerSelector pointFunc={pointFunc} team={team} art="Fangpunkt"/>
+        <PlayerSelector pointFunc={pointFunc} team={team} playerCount={playerCount} art="Fangpunkt"/>
       </Popup>
     </div>
   );

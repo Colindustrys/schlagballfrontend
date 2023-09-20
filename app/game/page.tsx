@@ -275,13 +275,13 @@ export default function Home() {
               <TeamNameDisplay json={json} teamNR={2}/>
             </div>
             <div id="team1points">
-              <PointButtons pointFunc={point} team={1}/>
+              <PointButtons pointFunc={point} team={1} playerCount={json.team1playerCount}/>
             </div>
             <div id="currentStatus" className="flex items-center justify-center">
               <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
             </div>
             <div id="team2points">
-              <PointButtons pointFunc={point} team={2}/>
+              <PointButtons pointFunc={point} team={2} playerCount={json.team2playerCount}/>
             </div>
             <div></div>
             <div className=" text-center felx items-center justify-center">
