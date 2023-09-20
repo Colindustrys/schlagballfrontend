@@ -143,6 +143,12 @@ export default function Home() {
     alert("Game Over!");
   }
 
+  function clearCookies() {
+    Cookies.remove("myJsonData")
+    Cookies.remove("myEventData")
+    window.location.href = "/menu";
+  }
+
   return (
     <div>
       <header>
@@ -170,6 +176,7 @@ export default function Home() {
 
         <PointButtons pointFunc={point} team={2}/>
         <a href="/menu">menu</a>
+        <button onClick={clearCookies}>DeleteGame</button>
         <EventLog events={events}/>
         <TimerStartButton json={json}/>
       </main>

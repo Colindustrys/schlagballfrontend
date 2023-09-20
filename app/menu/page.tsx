@@ -54,7 +54,7 @@ export default function Menu() {
       currentTeam: 0,
 
       setGameLength: timer,
-      timestamp: Date.now(),
+      timestamp: null,
       events: []
     }
 
