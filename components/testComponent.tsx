@@ -9,10 +9,10 @@ interface myFunctions {
 
 const TestComponent: React.FC<myFunctions> = ({loadData, saveData, clearCookies}) => {
   return (
-    <div className='text-center text-lg'>
-      <button className="bg-blue-400 nice-button" onClick={loadData}>load</button>
-      <button className="mx-5 bg-green-400 nice-button" onClick={saveData}>save</button>
-      <button className="mx-5 bg-red-500 nice-button" onClick={clearCookies}>delete</button>
+    <div className='text-center text-lg font-bold'>
+      <button className="bg-blue-400 nice-button my-2" onClick={loadData}>Spiel laden</button>
+      <button className="mx-5 bg-green-400 nice-button my-2" onClick={saveData}>Spiel speichern</button>
+      <button className="mx-5 bg-red-500 nice-button my-2" onClick={clearCookies}>Spiel löschen</button>
     </div>
   );
 }
