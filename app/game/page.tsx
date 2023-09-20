@@ -211,12 +211,17 @@ export default function Home() {
   }
 
   function clearCookies() {
-    // Cookies.remove("myJsonData")
-    // Cookies.remove("myEventData")
+    
 
-    localStorage.removeItem('myGameData');
-    localStorage.removeItem('myEventsData');
-    window.location.href = "/";
+    if (confirm("Are you sure you want to do that?")) {
+      Cookies.remove("myJsonData")
+      Cookies.remove("myEventData")
+  
+      localStorage.removeItem('myGameData');
+      localStorage.removeItem('myEventsData');
+      window.location.href = "/";
+    }
+
   }
 
   function timerStart() {
