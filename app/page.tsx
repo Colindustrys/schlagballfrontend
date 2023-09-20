@@ -20,9 +20,11 @@ let myJson: GameData = {
   "team1points": 30, 
   "team2name": "lakers",
   "team2points": 20,
+  "team1playerCount": 12,
   "currentTeam": 0,
   "team1currentPlayer": 0,
   "team2currentPlayer": 0,
+  "team2playerCount": 12,
   "timestamp": null,
   "setGameLength": 3,
   "events": []
@@ -76,11 +78,11 @@ export default function Home() {
     if (newJson.currentTeam == 0) {
       //team 1
       newJson.team1currentPlayer++;
-      newJson.team1currentPlayer = newJson.team1currentPlayer % 12;
+      newJson.team1currentPlayer = newJson.team1currentPlayer % json.team1playerCount;
     } else {
       //team 2
       newJson.team2currentPlayer++;
-      newJson.team2currentPlayer = newJson.team2currentPlayer % 12;
+      newJson.team2currentPlayer = newJson.team2currentPlayer % json.team2playerCount;
     }
 
     setJson(newJson)
