@@ -86,70 +86,49 @@ export default function Menu() {
 
   return (
     <div>
-      <header>
+      <header className="flex items-center justify-center my-10 font-bold text-5xl underline">
         <h1>Menu</h1>
       </header>
       
       <main>
-        <div>
-          <button onClick={loadGame}>Load Game</button>
+        <div className="flex items-center justify-center my-10 font-bold text-5xl">
+          <button className=" bg-blue-200 m-2.5 nice-button" onClick={loadGame}>Load Game</button>
         </div>
-        <div>
+
           <form onSubmit={onSumbitHandler}>
-            <div>
-              <label htmlFor="input1">Team 1 Name:</label>
-              <input
-                type="text"
-                id="input1" 
-                name="team1name"
-                value={formData.team1name}
-                onChange={handleChange}
-              />
+            <div id="sides" className=" grid grid-cols-2 text-3xl font-bold">
+              <div id="team1" className=" px-5 flex items-start justify-center flex-col">
+                <div className="p-5">
+                  <label htmlFor="input1">Team 1 Name: </label>
+                  <input className=" border-4 border-black" placeholder="Team Name 1" type="text" id="input1" name="team1name" value={formData.team1name} onChange={handleChange}/>
+                </div>
+                <div className="p-5">
+                  <label htmlFor="input1_5">Team 1 Spieler Anzahl: </label>
+                  <input className=" border-4 border-black" type="number" id="input1_5" name="team1Size" value={formData.team1Size} onChange={handleChange}/>
+                </div>
+              </div>
+              <div id="team2" className=" px-5 flex items-end justify-center flex-col">
+                <div className="p-5">
+                  <label htmlFor="input2">Team 2 Name</label>
+                  <input className=" border-4 border-black" placeholder="Team Name 2" type="text" id="input2" name="team2name" value={formData.team2name} onChange={handleChange}/>
+                </div>
+                <div className="p-5">
+                  <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
+                  <input className=" border-4 border-black" type="number" id="input2_5" name="team2Size" value={formData.team2Size} onChange={handleChange}/>
+                </div>
+              </div>
             </div>
-            <div>
-              <label htmlFor="input1_5">Team 1 Spieler Anzahl:</label>
-              <input
-                type="number"
-                id="input1_5" 
-                name="team1Size"
-                value={formData.team1Size}
-                onChange={handleChange}
-              />
+            
+            
+            <div className="flex items-center justify-center text-3xl font-bold mt-10">
+              <label className="mr-5" htmlFor="input3">Timer länge (min)</label>
+              <input className="border-4 border-black w-20" type="number" id="input3" name="timer" value={formData.timer} onChange={handleChange}/>
             </div>
-            <div>
-              <label htmlFor="input2">Team 2 Name</label>
-              <input
-                type="text"
-                id="input2"
-                name="team2name"
-                value={formData.team2name}
-                onChange={handleChange}
-              />
+            <div className="text-3xl flex items-center justify-center mt-9">
+              <button className=" bg-green-400 nice-button m-5" type="submit">New Game</button>
             </div>
-            <div>
-              <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
-              <input
-                type="number"
-                id="input2_5" 
-                name="team2Size"
-                value={formData.team2Size}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="input3">Timer länge</label>
-              <input
-                type="number"
-                id="input3"
-                name="timer"
-                value={formData.timer}
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit">New Game</button>
           </form>
           
-        </div>
       </main>
     </div>
 

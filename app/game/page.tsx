@@ -263,7 +263,9 @@ export default function Home() {
             <div id="timer" className="">
               <TimeLeft json={json} endGameCallback={endGame}/>
             </div>
-            <div></div>
+            <div className="flex items-end justify-start">
+              <TimerStartButton json={json} onClickFunction={timerStart}/>
+            </div>
             <div id="teamName1" className='text-4xl font-bold p-5 text-center'>
               <TeamNameDisplay json={json} teamNR={1}/>
             </div>

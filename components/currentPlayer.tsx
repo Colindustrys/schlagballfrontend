@@ -25,10 +25,13 @@ const CurrentPlayer: React.FC<myCurrentPlayer> = ({json, nextPlayer}) => {
   }
 
   return (
-    <div className=' text-center'>
-      <p className='mt-8 font-bold text-2xl'>Team: {json.currentTeam + 1}</p>
-      <p className='mb-8 font-bold text-2xl'>Player: {currentPlayer + 1}</p>
-      <button className=' bg-white text-xl border border-black border-2 font-bold py-2.5 px-5 rounded-full' onClick={nextPlayer}>nextPlayer</button>
+    <div className='text-center'>
+      <p className='mt-4 font-bold text-2xl'>Spieler mit Schlagrecht</p>
+      <div className='border-4 border-black mb-4'>
+        <p className='font-bold text-2xl'>Team: {json.currentTeam + 1}</p>
+        <p className='font-bold text-2xl'>Player: {currentPlayer + 1}</p>
+      </div>
+      <button className=' bg-white text-xl border border-black border-2 font-bold py-2.5 px-5 rounded-full' onClick={nextPlayer}>Hat geschlagen</button>
     </div>
   );
 }
