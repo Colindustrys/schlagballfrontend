@@ -10,10 +10,12 @@ import ScoreBoard from "@/components/score";
 import TeamNameDisplay from "@/components/teamNameDisplay";
 import PlayerSelector from "@/components/playerSelector";
 import PointButtons from "@/components/pointButtons";
+import Stack from "../../types/stack"
 
 import 'reactjs-popup/dist/index.css';
 import EventLog from "@/components/eventLog"
 import TimerStartButton from "@/components/timerStartButton"
+import { updateLanguageServiceSourceFile } from "typescript";
 
 let myJson: GameData = {
   "team1name": "Eagles",
@@ -27,10 +29,13 @@ let myJson: GameData = {
   "team2playerCount": 12,
   "timestamp": null,
   "setGameLength": 3,
-  "events": []
+  "events": [{timestampt: 100, text: "placeholder", team: 2, player: 1}]
 }
 
 let myEvents: EventT[] = []
+
+const jsonStack = new Stack<GameData>(10);
+const eventsStack = new Stack<EventT[]>(10);
 
 export default function Home() {
 
@@ -78,6 +83,34 @@ export default function Home() {
 
     localStorage.setItem("myGameData", JSON.stringify(json))
     localStorage.setItem("myEventsData", JSON.stringify(events))
+    
+    // jsonStack.push(JSON.stringify(json))
+    // eventsStack.push(JSON.stringify(events))
+    console.log("saveData");
+    console.log("stacklen: " + jsonStack.size());
+    
+    if (json.events[0]?.text != "placeholder") {
+      jsonStack.push(json)
+      eventsStack.push(events)
+    }
+    
+  }
+
+  function undo() {
+
+    let newJson = jsonStack.pop()
+    let newEvents = eventsStack.pop()
+
+    //falls das 
+    if (newJson == json) {
+      newJson = jsonStack.pop()
+      newEvents = eventsStack.pop()
+    }
+
+    if (newJson && newEvents) {
+      setJson(newJson)
+      setEvents(newEvents)
+    }
   }
 
   function nextPlayer() {
@@ -161,14 +194,15 @@ export default function Home() {
     // ]
     // console.log(JSON.stringify(events));  
 
-    localStorage.setItem("myEventsData", JSON.stringify(events))
-    localStorage.removeItem('test');
-
-    // Remove data from localStorage
-    //localStorage.removeItem('userData');
+    for (let i: number = 1; i <= 20; i++) {
+      // console.log("push " + i);
+      
+      // stack.push(i);
+      
+      
+    }
 
     
-
     
   }
 
@@ -205,6 +239,7 @@ export default function Home() {
         <TeamNameDisplay json={json} teamNR={2}/>
 
         <button onClick={temp}>temp</button>
+        <button onClick={undo}>undo</button>
 
         <TestComponent loadData={loadData} saveData={saveData}/>
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
