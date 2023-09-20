@@ -86,31 +86,49 @@ export default function Home() {
     
     // jsonStack.push(JSON.stringify(json))
     // eventsStack.push(JSON.stringify(events))
-    console.log("saveData");
-    console.log("stacklen: " + jsonStack.size());
     
+    
+    addToUndoLog(json, events)
+    
+  }
+
+  function addToUndoLog(tempJson: GameData, tempEvents: EventT[]) {
     if (json.events[0]?.text != "placeholder") {
-      jsonStack.push(json)
-      eventsStack.push(events)
+      jsonStack.push(tempJson)
+      eventsStack.push(tempEvents)
     }
-    
+
+    console.log("addToUndoLog() stacklen:" + jsonStack.size());
   }
 
   function undo() {
 
-    let newJson = jsonStack.pop()
-    let newEvents = eventsStack.pop()
+    console.log("undo start, stacklen: " + jsonStack.size());
+    
+
+    let newJson: GameData | undefined = jsonStack.pop()
+    let newEvents: EventT[] | undefined = eventsStack.pop()
+    console.log(newJson);
+    
 
     //falls das 
     while (newJson == json) {
       newJson = jsonStack.pop()
       newEvents = eventsStack.pop()
+      console.log(newJson);
     }
 
     if (newJson && newEvents) {
+      addToUndoLog(newJson, newEvents);
       setJson(newJson)
       setEvents(newEvents)
+    } else {
+      addToUndoLog(json, events)
     }
+
+    
+
+    console.log("undo end");
   }
 
   function nextPlayer() {
@@ -158,21 +176,16 @@ export default function Home() {
 
   function point(team: number, player: number, art: string) {
     //add event 
-    console.log(team + " " + player + " " + art);
     addLog(team, player, art)
-
-    console.log(team + " " + player + " " + art);
-    
-    
     
     let newJson: GameData
 
     if (team == 1) {
-      console.log(team);
+      //console.log(team);
       
       newJson = pointTeam1()
     } else {
-      console.log(team);
+      //console.log(team);
       
       newJson = pointTeam2()
     }
@@ -202,6 +215,10 @@ export default function Home() {
       
     }
 
+    console.log("len: " + jsonStack.size());
+    console.log(jsonStack.peek());
+    
+    
     
     
   }
@@ -235,6 +252,7 @@ export default function Home() {
     <div>
       <header className="text-center my-5">
             <h1 className="text-3xl font-bold underline text-center">Schlagball</h1>
+            <button onClick={temp}>temp</button>
       </header>
       <div className="container mx-auto">
         <div className="grid grid-cols-3 gap-4">
