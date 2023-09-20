@@ -5,7 +5,9 @@ import GameData from "@/types/gameData";
 
 interface FormData {
   team1name: string;
+  team1Size: number,
   team2name: string;
+  team2Size: number,
   timer: number;
 }
 
@@ -17,7 +19,9 @@ export default function Menu() {
 
   const [formData, setFormData] = useState<FormData>({
     team1name: '',
+    team1Size: 12,
     team2name: '',
+    team2Size: 12,
     timer: 0,
   });
 
@@ -35,21 +39,23 @@ export default function Menu() {
   function onSumbitHandler(e: React.FormEvent) {
     e.preventDefault();
     
-    newGame(formData.team1name, formData.team2name, formData.timer)
+    newGame(formData.team1name, formData.team1Size, formData.team2name, formData.team2Size, formData.timer)
     
   }
 
-  function newGame(team1name: string, team2name: string, timer: number) {
+  function newGame(team1name: string, team1Size: number, team2name: string, team2Size: number, timer: number) {
   
     //make new game object 
     let newGame: GameData = {
       team1name: team1name,
       team1points: 0,
       team1currentPlayer: 0,
+      team1playerCount: team1Size,
 
       team2name: team2name,
       team2points: 0, 
       team2currentPlayer: 0,
+      team2playerCount: team2Size,
 
       currentTeam: 0,
 
@@ -98,12 +104,32 @@ export default function Menu() {
               />
             </div>
             <div>
+              <label htmlFor="input1_5">Team 1 Spieler Anzahl:</label>
+              <input
+                type="number"
+                id="input1_5" 
+                name="team1Size"
+                value={formData.team1Size}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
               <label htmlFor="input2">Team 2 Name</label>
               <input
                 type="text"
                 id="input2"
                 name="team2name"
                 value={formData.team2name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
+              <input
+                type="number"
+                id="input2_5" 
+                name="team2Size"
+                value={formData.team2Size}
                 onChange={handleChange}
               />
             </div>
