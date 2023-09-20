@@ -193,7 +193,7 @@ export default function Home() {
   return (
     <div>
       <header>
-        <h1>My Page</h1>
+        <h1 className="text-3xl font-bold underline">My Page</h1>
       </header>
       
       <main>
