@@ -268,8 +268,8 @@ export default function Home() {
             <div className=" text-center felx items-center justify-center">
               <button className="bg-white active:bg-blue-200 p-5 px-5 border-black border-2 font-bold rounded-full prevent-select" onClick={toterWechsel}>Toter Wechsel</button>
             </div>
-            <div>
-              <button onClick={undo}>undo</button>
+            <div className="flex items-center justify-left">
+              <button className="bg-green-400 nice-button" onClick={undo}>undo</button>
             </div>
         </div>
       </div>

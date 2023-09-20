@@ -6,6 +6,10 @@
   background-color: blue;
 }
 
+.nice-button {
+  @apply mx-5 py-5 px-5 rounded-full;
+}
+
 .point-button {
   @apply bg-blue-100 active:bg-blue-400 py-2.5 mb-2 rounded-full prevent-select;
 }
