@@ -21,11 +21,16 @@ function render(event: EventT, key: Key) {
 }
 
 const EventLog: React.FC<eventLog> = ({events}) => {
+
+    ///console.log(events.slice());
+    
+
     useEffect(() => {
 
     }, [events]);
 
-  return (
+  return (events.length > 0) && (
+    
     <div>
         <table>
             <tbody>

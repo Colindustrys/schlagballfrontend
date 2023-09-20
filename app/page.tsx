@@ -38,37 +38,46 @@ export default function Home() {
     loadData()
   }, []);
 
-
   const [json, setJson] = useState(myJson);
   const [events, setEvents] = useState(myEvents)
+
+  useEffect(() => {
+    saveData()
+  }, [json, events]);
 
   function pointTeam1() {
     let newJson = JSON.parse(JSON.stringify(json));
     newJson.team1points++;
-    setJson(newJson)
+    setJson(newJson)  
+    return newJson  
   }
 
   function pointTeam2() {
     let newJson = JSON.parse(JSON.stringify(json));
     newJson.team2points++;
     setJson(newJson)
+    return newJson
   }
 
   function loadData() {
-    let storedData = Cookies.get('myJsonData');
+    let storedData = localStorage.getItem("myGameData");
     if (storedData) {
       setJson(JSON.parse(storedData));
     }
 
-    storedData = Cookies.get('myEventData');
+    storedData = localStorage.getItem("myEventsData");
     if (storedData) {
       setEvents(JSON.parse(storedData));
     }
+
   }
 
   function saveData() {
-    Cookies.set('myJsonData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
-    Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
+    // Cookies.set('myGameData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
+    // Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
+
+    localStorage.setItem("myGameData", JSON.stringify(json))
+    localStorage.setItem("myEventsData", JSON.stringify(events))
   }
 
   function nextPlayer() {
@@ -88,8 +97,12 @@ export default function Home() {
     setJson(newJson)
   }
 
-  function switchTeam() {
-    let newJson: GameData = JSON.parse(JSON.stringify(json));
+  function toterWechsel() {
+    switchTeam(JSON.parse(JSON.stringify(json)))
+  }
+
+  function switchTeam(newJson: GameData) {
+    //let newJson: GameData = JSON.parse(JSON.stringify(json));
     newJson.currentTeam++;
     newJson.currentTeam = newJson.currentTeam % 2
 
@@ -115,15 +128,26 @@ export default function Home() {
     console.log(team + " " + player + " " + art);
     addLog(team, player, art)
 
+    console.log(team + " " + player + " " + art);
+    
+    
+    
+    let newJson: GameData
 
     if (team == 1) {
-      pointTeam1()
+      console.log(team);
+      
+      newJson = pointTeam1()
     } else {
-      pointTeam2()
+      console.log(team);
+      
+      newJson = pointTeam2()
     }
-
+    //console.log(json);
+    
+    //hier ist ein problem mit dem usestate da in switch team der usestate json genutzt wird bevor das update von pointTeam() da ist im usestate 
     if (art == "Abwurfpunkt") {
-      switchTeam();
+      switchTeam(newJson);
     }
   }
 
@@ -131,11 +155,20 @@ export default function Home() {
     //Cookies.remove('')
     //window.location.href = "/menu";
 
-    let events: EventT[] = [
-      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
-      {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
-    ]
-    console.log(JSON.stringify(events));
+    // let events: EventT[] = [
+    //   {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+    //   {"timestampt": 0, "text": "5etgrkdfsm", "team": 3, "player": 3},
+    // ]
+    // console.log(JSON.stringify(events));  
+
+    localStorage.setItem("myEventsData", JSON.stringify(events))
+    localStorage.removeItem('test');
+
+    // Remove data from localStorage
+    //localStorage.removeItem('userData');
+
+    
+
     
   }
 
@@ -144,15 +177,25 @@ export default function Home() {
   }
 
   function clearCookies() {
-    Cookies.remove("myJsonData")
-    Cookies.remove("myEventData")
+    // Cookies.remove("myJsonData")
+    // Cookies.remove("myEventData")
+
+    localStorage.removeItem('myGameData');
+    localStorage.removeItem('myEventsData');
     window.location.href = "/menu";
+  }
+
+  function timerStart() {
+    if (json.timestamp === null) {
+      json.timestamp = Date.now()
+    }
+    saveData()
   }
 
   return (
     <div>
       <header>
-        <h1>My Page</h1>
+        <h1 className="text-3xl font-bold underline">My Page</h1>
       </header>
       
       <main>
@@ -166,7 +209,7 @@ export default function Home() {
         <TestComponent loadData={loadData} saveData={saveData}/>
         <CurrentPlayer json={json} nextPlayer={nextPlayer}/>
         <TimeLeft json={json} endGameCallback={endGame}/>
-        <button onClick={switchTeam}>Toter Wechsel</button>
+        <button onClick={toterWechsel}>Toter Wechsel</button>
         
         <p>Punkte Team 1</p>
 
@@ -178,7 +221,7 @@ export default function Home() {
         <a href="/menu">menu</a>
         <button onClick={clearCookies}>DeleteGame</button>
         <EventLog events={events}/>
-        <TimerStartButton json={json}/>
+        <TimerStartButton json={json} onClickFunction={timerStart}/>
       </main>
     </div>
 
