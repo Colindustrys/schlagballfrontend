@@ -34,8 +34,8 @@ let myJson: GameData = {
 
 let myEvents: EventT[] = []
 
-const jsonStack = new Stack<GameData>(10);
-const eventsStack = new Stack<EventT[]>(10);
+const jsonStack = new Stack<GameData>(100);
+const eventsStack = new Stack<EventT[]>(100);
 
 export default function Home() {
 
@@ -102,7 +102,7 @@ export default function Home() {
     let newEvents = eventsStack.pop()
 
     //falls das 
-    if (newJson == json) {
+    while (newJson == json) {
       newJson = jsonStack.pop()
       newEvents = eventsStack.pop()
     }
