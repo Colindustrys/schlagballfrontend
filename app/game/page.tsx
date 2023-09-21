@@ -81,7 +81,17 @@ export default function Home() {
 
   }
 
-  function saveData() {
+  function download() {
+    var a = document.createElement("a");
+    var file = new Blob([JSON.stringify(json)]);
+    a.href = URL.createObjectURL(file);
+    let date = new Date((json.timestamp === null) ? 0 : json.timestamp )
+    let name = `${json.team1name} vs ${json.team2name} : ${date.toDateString()}`
+    a.download = name;
+    a.click();
+  }
+
+  function saveData(input=json) {
     // Cookies.set('myGameData', JSON.stringify(json), { sameSite: 'lax', expires: 365 });
     // Cookies.set('myEventData', JSON.stringify(events), { sameSite: 'lax', expires: 365 });
 
@@ -283,7 +293,7 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-4">
           
             <div id="storage" className="flex items-center justify-center">
-              <TestComponent loadData={loadData} saveData={saveData} clearCookies={clearCookies}/>
+              <TestComponent loadData={loadData} saveData={download} clearCookies={clearCookies}/>
             </div>
             <div id="timer" className="">
               <TimeLeft json={json} endGameCallback={endGame}/>
