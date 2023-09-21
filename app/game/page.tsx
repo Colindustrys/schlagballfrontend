@@ -291,13 +291,13 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <TimerStartButton json={json} onClickFunction={timerStart}/>
             </div>
-            <div id="teamName1" className='text-4xl font-bold p-5 text-center' style={{color: (json.currentTeam === 0) ? "green" : "red"}}>
+            <div id="teamName1" className='text-3xl font-bold p-5 text-center' style={{color: (json.currentTeam === 0) ? "green" : "red"}}>
               <TeamNameDisplay json={json} teamNR={1}/>
             </div>
             <div id="score" className="flex items-center justify-center">
               <ScoreBoard json={json}/>
             </div>
-            <div id="teamName2" className='text-4xl font-bold p-5 text-center' style={{color: (json.currentTeam === 1) ? "green" : "red"}}>
+            <div id="teamName2" className='text-3xl font-bold p-5 text-center' style={{color: (json.currentTeam === 1) ? "green" : "red"}}>
               <TeamNameDisplay json={json} teamNR={2}/>
             </div>
             <div id="team1points">

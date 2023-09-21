@@ -24,7 +24,7 @@ const TeamNameDisplay: React.FC<myCurrentPlayer> = ({json, teamNR}) => {
 
   return (
     <div>
-      <h2>{teamName}</h2>
+      <h2 className=' truncate'>{teamName}</h2>
       
     </div>
   );
