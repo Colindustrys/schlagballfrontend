@@ -19,7 +19,7 @@
 }
 
 .table-element {
-  @apply p-1 lg:p-5 border border-black border-2;
+  @apply p-1 lg:p-5 border-black border-2;
 }
 
 .col-name {
@@ -30,4 +30,8 @@
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+.point-amount_selector {
+  @apply my-2.5;
 }

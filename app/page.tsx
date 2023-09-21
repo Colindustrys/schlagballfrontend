@@ -9,6 +9,10 @@ interface FormData {
   team2name: string;
   team2Size: number,
   timer: number;
+  weitschlag: number,
+  lauf: number,
+  abwurf: number,
+  fang: number,
 }
 
 interface FormProps {
@@ -23,6 +27,10 @@ export default function Menu() {
     team2name: '',
     team2Size: 12,
     timer: 0,
+    weitschlag: 1,
+    lauf: 1,
+    abwurf: 1,
+    fang: 1
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,11 +47,14 @@ export default function Menu() {
   function onSumbitHandler(e: React.FormEvent) {
     e.preventDefault();
     
-    newGame(formData.team1name, formData.team1Size, formData.team2name, formData.team2Size, formData.timer)
+    newGame(formData.team1name, formData.team1Size, formData.team2name, formData.team2Size, formData.timer, formData.weitschlag,
+      formData.lauf, formData.abwurf, formData.fang
+      )
     
   }
 
-  function newGame(team1name: string, team1Size: number, team2name: string, team2Size: number, timer: number) {
+  function newGame(team1name: string, team1Size: number, team2name: string, team2Size: number, timer: number, weitschlag: number,
+    lauf: number, abwurf: number, fang: number,) {
   
     //make new game object 
     let newGame: GameData = {
@@ -58,6 +69,11 @@ export default function Menu() {
       team2playerCount: team2Size,
 
       currentTeam: 0,
+
+      weitschlag: weitschlag,
+      lauf: lauf,
+      abwurf: abwurf,
+      fang: fang,
 
       setGameLength: timer,
       timestamp: null,
@@ -100,7 +116,7 @@ export default function Menu() {
               <div id="team1" className=" px-5 flex items-start justify-center flex-col">
                 <div className="p-5">
                   <label htmlFor="input1">Team 1 Name: </label>
-                  <input className=" border-4 border-black" placeholder="Team Name 1" type="text" id="input1" name="team1name" value={formData.team1name} onChange={handleChange}/>
+                  <input className=" border-4 border-black w-80" placeholder="Team Name 1" type="text" id="input1" name="team1name" value={formData.team1name} onChange={handleChange}/>
                 </div>
                 <div className="p-5">
                   <label htmlFor="input1_5">Team 1 Spieler Anzahl: </label>
@@ -110,7 +126,7 @@ export default function Menu() {
               <div id="team2" className="px-5 flex items-end justify-center flex-col">
                 <div className="p-5">
                   <label htmlFor="input2">Team 2 Name: </label>
-                  <input className="border-4 border-black" placeholder="Team Name 2" type="text" id="input2" name="team2name" value={formData.team2name} onChange={handleChange}/>
+                  <input className="border-4 border-black w-80" placeholder="Team Name 2" type="text" id="input2" name="team2name" value={formData.team2name} onChange={handleChange}/>
                 </div>
                 <div className="p-5">
                   <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
@@ -118,8 +134,26 @@ export default function Menu() {
                 </div>
               </div>
             </div>
-            
-            
+            <div className="flex items-center justify-center">
+              <div className="flex flex-col items-end justify-end font-bold text-2xl">
+                <div className="point-amount_selector">
+                    <label htmlFor="weitschlag">Weitschlag: </label>
+                    <input className=" border-4 border-black w-20" type="number" id="weitschlag" name="weitschlag" value={formData.weitschlag} onChange={handleChange}/>
+                </div>
+                <div className="point-amount_selector">
+                    <label htmlFor="lauf">Lauf: </label>
+                    <input className=" border-4 border-black w-20" type="number" id="lauf" name="lauf" value={formData.lauf} onChange={handleChange}/>
+                </div>
+                <div className="point-amount_selector">
+                    <label htmlFor="abwurf">Abwurf: </label>
+                    <input className=" border-4 border-black w-20" type="number" id="abwurf" name="abwurf" value={formData.abwurf} onChange={handleChange}/>
+                </div>
+                <div className="point-amount_selector">
+                    <label htmlFor="fang">Fang: </label>
+                    <input className=" border-4 border-black w-20" type="number" id="fang" name="fang" value={formData.fang} onChange={handleChange}/>
+                </div>
+              </div>
+            </div>
             <div className="flex items-center justify-center text-3xl font-bold mt-10">
               <label className="mr-5" htmlFor="input3">Timer länge (min)</label>
               <input className="border-4 border-black w-20" type="number" id="input3" name="timer" value={formData.timer} onChange={handleChange}/>

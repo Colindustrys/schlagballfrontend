@@ -13,6 +13,11 @@ interface GameData {
 
   currentTeam: number;
 
+  weitschlag: number,
+  lauf: number,
+  abwurf: number,
+  fang: number,
+
   timestamp: number | null,
   setGameLength: number
   events: EventT[]

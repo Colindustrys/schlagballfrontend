@@ -23,7 +23,7 @@ const TeamNameDisplay: React.FC<myCurrentPlayer> = ({json, teamNR}) => {
   }
 
   return (
-    <div className='scoreBox'>
+    <div>
       <h2>{teamName}</h2>
       
     </div>

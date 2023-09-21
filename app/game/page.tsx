@@ -29,6 +29,10 @@ let myJson: GameData = {
   "team2playerCount": 12,
   "timestamp": null,
   "setGameLength": 3,
+  "weitschlag": 1,
+  "lauf": 1,
+  "abwurf": 1,
+  "fang": 1,
   "events": [{timestampt: 100, text: "placeholder", team: 2, player: 1}]
 }
 
@@ -50,16 +54,16 @@ export default function Home() {
     saveData()
   }, [json, events]);
 
-  function pointTeam1() {
+  function pointTeam1(amount: number) {
     let newJson = JSON.parse(JSON.stringify(json));
-    newJson.team1points++;
+    newJson.team1points += Number(amount);
     setJson(newJson)  
     return newJson  
   }
 
-  function pointTeam2() {
+  function pointTeam2(amount: number) {
     let newJson = JSON.parse(JSON.stringify(json));
-    newJson.team2points++;
+    newJson.team2points += Number(amount);
     setJson(newJson)
     return newJson
   }
@@ -180,14 +184,36 @@ export default function Home() {
     
     let newJson: GameData
 
+    let amount: number;
+    switch (art) {
+      case "Weitschlagpunkt":
+        amount = json.weitschlag;
+        break;
+
+      case "Laufpunkt":
+        amount = json.lauf;
+        break;
+
+      case "Abwurfpunkt":
+        amount = json.abwurf;
+        break;
+
+      case "Fangpunkt":
+        amount = json.fang;
+        break;
+    
+      default:
+        amount = 0;
+    }
+
     if (team == 1) {
       //console.log(team);
       
-      newJson = pointTeam1()
+      newJson = pointTeam1(amount)
     } else {
       //console.log(team);
       
-      newJson = pointTeam2()
+      newJson = pointTeam2(amount)
     }
     //console.log(json);
     
@@ -265,13 +291,13 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <TimerStartButton json={json} onClickFunction={timerStart}/>
             </div>
-            <div id="teamName1" className='text-4xl font-bold p-5 text-center'>
+            <div id="teamName1" className='text-4xl font-bold p-5 text-center' style={{color: (json.currentTeam === 0) ? "green" : "red"}}>
               <TeamNameDisplay json={json} teamNR={1}/>
             </div>
             <div id="score" className="flex items-center justify-center">
               <ScoreBoard json={json}/>
             </div>
-            <div id="teamName2" className='text-4xl font-bold p-5 text-center'>
+            <div id="teamName2" className='text-4xl font-bold p-5 text-center' style={{color: (json.currentTeam === 1) ? "green" : "red"}}>
               <TeamNameDisplay json={json} teamNR={2}/>
             </div>
             <div id="team1points">
