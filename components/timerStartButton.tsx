@@ -14,8 +14,8 @@ const TimerStartButton: React.FC<timerStartButton> = ({json, onClickFunction}) =
     // }
 
     return (
-      <div>
-        <button className=' bg-green-400 nice-button' onClick={() => onClickFunction()}>Start Timer</button>
+      <div className=' flex flex-row justify-center '>
+        <button className=' bg-green-300 nice-button' onClick={() => onClickFunction()}>Start Timer</button>
       </div>
     );
   }

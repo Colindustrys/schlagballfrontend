@@ -266,7 +266,7 @@ export default function Home() {
   function clearCookies() {
     
 
-    if (confirm("Are you sure you want to do that?")) {
+    if (confirm("Spiel wirklich löschen?")) {
       Cookies.remove("myJsonData")
       Cookies.remove("myEventData")
   
@@ -289,17 +289,21 @@ export default function Home() {
       <header className="text-center my-5">
             <h1 className="text-3xl font-bold text-center">Schlagball</h1>
       </header>
+      
       <div className="container mx-auto">
         <div className="grid grid-cols-3 gap-4">
           
-            <div id="storage" className="flex items-center justify-center">
+            <div id="storage" className="flex flex-col items-center justify-center">
               <TestComponent loadData={loadData} saveData={download} clearCookies={clearCookies}/>
+              <button className=" bg-yellow-300 nice-button mt-5" onClick={undo}>undo</button>
             </div>
-            <div id="timer" className="">
+            <div id="timer" className=" flex flex-col align-middle">
+              <TimerStartButton json={json} onClickFunction={timerStart}/>
               <TimeLeft json={json} endGameCallback={endGame}/>
             </div>
             <div className="flex items-center justify-center">
-              <TimerStartButton json={json} onClickFunction={timerStart}/>
+            <button className="bg-white active:bg-blue-200 nice-button border-black border-2 font-bold rounded-full prevent-select" onClick={toterWechsel}>Toter Wechsel</button>
+              
             </div>
             <div id="teamName1" className='text-3xl font-bold p-5 text-center' style={{color: (json.currentTeam === 0) ? "green" : "red"}}>
               <TeamNameDisplay json={json} teamNR={1}/>
@@ -321,10 +325,10 @@ export default function Home() {
             </div>
             <div></div>
             <div className=" text-center felx items-center justify-center">
-              <button className="bg-white active:bg-blue-200 p-5 px-5 border-black border-2 font-bold rounded-full prevent-select" onClick={toterWechsel}>Toter Wechsel</button>
+              
             </div>
             <div className="flex items-center justify-center">
-              <button className="bg-green-400 nice-button" onClick={undo}>undo</button>
+              
             </div>
         </div>
       </div>
