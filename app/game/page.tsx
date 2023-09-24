@@ -260,7 +260,7 @@ export default function Home() {
   }
 
   function endGame() {
-    alert("Game Over!");
+    alert("Der Timer ist ausgelaufen!");
   }
 
   function clearCookies() {

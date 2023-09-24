@@ -23,8 +23,11 @@ const PlayerSelector: React.FC<myCurrentPlayer> = ({pointFunc, team, art, player
   }
 
   return (
-    <div className='currentPlayerBox grid grid-cols-4 bg-slate-200'>
-      {Array.from({ length: playerCount}, (_, index) => index).map(renderButton)}
+    <div className='bg-slate-200 text-center'>
+      <label>Spieler Auswahl</label>
+      <div className='currentPlayerBox grid grid-cols-4'>
+        {Array.from({ length: playerCount}, (_, index) => index).map(renderButton)}
+      </div>
     </div>
   );
 }
