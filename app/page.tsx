@@ -2,6 +2,7 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import Cookies from "js-cookie";
 import GameData from "@/types/gameData";
+import Image from 'next/image'
 
 interface FormData {
   team1name: string;
@@ -120,7 +121,7 @@ export default function Menu() {
                 </div>
                 <div className="p-2">
                   <label htmlFor="input1_5">Team 1 Spieler Anzahl: </label>
-                  <input className=" border-4 border-black w-20" type="number" id="input1_5" name="team1Size" value={formData.team1Size} onChange={handleChange}/>
+                  <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="input1_5" name="team1Size" value={formData.team1Size} onChange={handleChange}/>
                 </div>
               </div>
               <div id="team2" className="px-5 flex  justify-center flex-col">
@@ -130,7 +131,7 @@ export default function Menu() {
                 </div>
                 <div className="p-2">
                   <label htmlFor="input2_5">Team 2 Spieler Anzahl:</label>
-                  <input className=" border-4 border-black w-20" type="number" id="input2_5" name="team2Size" value={formData.team2Size} onChange={handleChange}/>
+                  <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="input2_5" name="team2Size" value={formData.team2Size} onChange={handleChange}/>
                 </div>
               </div>
             </div>
@@ -141,19 +142,19 @@ export default function Menu() {
                   <div className="flex flex-col items-end justify-end font-bold">
                     <div className="point-amount_selector">
                         <label htmlFor="weitschlag">Weitschlag: </label>
-                        <input className=" border-4 border-black w-20" type="number" id="weitschlag" name="weitschlag" value={formData.weitschlag} onChange={handleChange}/>
+                        <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="weitschlag" name="weitschlag" value={formData.weitschlag} onChange={handleChange}/>
                     </div>
                     <div className="point-amount_selector">
                         <label htmlFor="lauf">Lauf: </label>
-                        <input className=" border-4 border-black w-20" type="number" id="lauf" name="lauf" value={formData.lauf} onChange={handleChange}/>
+                        <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="lauf" name="lauf" value={formData.lauf} onChange={handleChange}/>
                     </div>
                     <div className="point-amount_selector">
                         <label htmlFor="abwurf">Abwurf: </label>
-                        <input className=" border-4 border-black w-20" type="number" id="abwurf" name="abwurf" value={formData.abwurf} onChange={handleChange}/>
+                        <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="abwurf" name="abwurf" value={formData.abwurf} onChange={handleChange}/>
                     </div>
                     <div className="point-amount_selector">
                         <label htmlFor="fang">Fang: </label>
-                        <input className=" border-4 border-black w-20" type="number" id="fang" name="fang" value={formData.fang} onChange={handleChange}/>
+                        <input className=" border-4 border-black w-20" type="number" inputMode="numeric" id="fang" name="fang" value={formData.fang} onChange={handleChange}/>
                     </div>
                   </div>
                 </div>
@@ -161,7 +162,8 @@ export default function Menu() {
             </details>
             <div className="flex items-center justify-center font-bold mt-5">
               <label className="mr-5" htmlFor="input3">Timer länge (min)</label>
-              <input className="border-4 border-black w-20" type="number" id="input3" name="timer" value={formData.timer} onChange={handleChange}/>
+              <input className="border-4 border-black w-20 mr-3" type="number" inputMode="numeric" id="input3" name="timer" value={formData.timer} onChange={handleChange}/>
+              <Image src="/clock.svg" alt="Clock Icon" width={35} height={35} priority/>
             </div>
             <div className=" flex items-center justify-center mt-4">
               <button className=" bg-green-300 nice-button " type="submit">Neues Spiel erstellen</button>

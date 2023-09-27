@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, FC, useEffect, useState } from 'react';
 import GameData from '@/types/gameData';
+import Image from 'next/image'
 
 interface timerStartButton {
     json: GameData
@@ -14,8 +15,11 @@ const TimerStartButton: React.FC<timerStartButton> = ({json, onClickFunction}) =
     // }
 
     return (
-      <div className=' flex flex-row justify-center '>
-        <button className=' bg-green-300 nice-button' onClick={() => onClickFunction()}>Start Timer</button>
+      <div>
+        <button className=' bg-green-400 nice-button flex items-center justify-center' onClick={() => onClickFunction()}>
+          <h1 className='mr-3 text-2xl'>Start Timer</h1>
+          <Image src="/clock.svg" alt="Clock Icon" width={35} height={35} priority/>
+          </button>
       </div>
     );
   }
