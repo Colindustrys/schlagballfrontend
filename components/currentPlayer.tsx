@@ -32,7 +32,6 @@ const CurrentPlayer: React.FC<myCurrentPlayer> = ({json, nextPlayer}) => {
         <p className='font-bold text-2xl'>Player: {currentPlayer + 1}</p>
         <button className=' bg-white text-xl border-black border-4 font-bold -full nice-button' onClick={nextPlayer}>Hat geschlagen</button>
       </div>
-      <button className=' bg-white text-xl border-black border-2 font-bold py-2.5 px-5 rounded-full' onClick={nextPlayer}>Hat geschlagen</button>
     </div>
   );
 }

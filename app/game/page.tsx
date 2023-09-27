@@ -297,7 +297,7 @@ export default function Home() {
               <TestComponent loadData={loadData} saveData={download} clearCookies={clearCookies}/>
               <button className=" bg-yellow-300 nice-button mt-5" onClick={undo}>undo</button>
             </div>
-            <div id="timer" className=" flex flex-col align-middle">
+            <div id="timer" className=" flex flex-col align-middle items-center">
               <TimerStartButton json={json} onClickFunction={timerStart}/>
               <TimeLeft json={json} endGameCallback={endGame}/>
             </div>
