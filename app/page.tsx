@@ -26,7 +26,7 @@ export default function Menu() {
     team1Size: 12,
     team2name: '',
     team2Size: 12,
-    timer: 0,
+    timer: 30,
     weitschlag: 1,
     lauf: 1,
     abwurf: 1,
@@ -134,26 +134,31 @@ export default function Menu() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="flex flex-col items-end justify-end font-bold">
-                <div className="point-amount_selector">
-                    <label htmlFor="weitschlag">Weitschlagpunkte: </label>
-                    <input className=" border-4 border-black w-20" type="number" id="weitschlag" name="weitschlag" value={formData.weitschlag} onChange={handleChange}/>
-                </div>
-                <div className="point-amount_selector">
-                    <label htmlFor="lauf">Laufpunkte: </label>
-                    <input className=" border-4 border-black w-20" type="number" id="lauf" name="lauf" value={formData.lauf} onChange={handleChange}/>
-                </div>
-                <div className="point-amount_selector">
-                    <label htmlFor="abwurf">Abwurfpunkte: </label>
-                    <input className=" border-4 border-black w-20" type="number" id="abwurf" name="abwurf" value={formData.abwurf} onChange={handleChange}/>
-                </div>
-                <div className="point-amount_selector">
-                    <label htmlFor="fang">Fangpunkte: </label>
-                    <input className=" border-4 border-black w-20" type="number" id="fang" name="fang" value={formData.fang} onChange={handleChange}/>
+            <details className="visable text-center">
+              <summary className="collapse-title font-bold">Punkte Einstellungen</summary>
+              <div className="collapse-content"> 
+                <div className="flex items-center justify-center">
+                  <div className="flex flex-col items-end justify-end font-bold">
+                    <div className="point-amount_selector">
+                        <label htmlFor="weitschlag">Weitschlag: </label>
+                        <input className=" border-4 border-black w-20" type="number" id="weitschlag" name="weitschlag" value={formData.weitschlag} onChange={handleChange}/>
+                    </div>
+                    <div className="point-amount_selector">
+                        <label htmlFor="lauf">Lauf: </label>
+                        <input className=" border-4 border-black w-20" type="number" id="lauf" name="lauf" value={formData.lauf} onChange={handleChange}/>
+                    </div>
+                    <div className="point-amount_selector">
+                        <label htmlFor="abwurf">Abwurf: </label>
+                        <input className=" border-4 border-black w-20" type="number" id="abwurf" name="abwurf" value={formData.abwurf} onChange={handleChange}/>
+                    </div>
+                    <div className="point-amount_selector">
+                        <label htmlFor="fang">Fang: </label>
+                        <input className=" border-4 border-black w-20" type="number" id="fang" name="fang" value={formData.fang} onChange={handleChange}/>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </details>
             <div className="flex items-center justify-center font-bold mt-5">
               <label className="mr-5" htmlFor="input3">Timer länge (min)</label>
               <input className="border-4 border-black w-20" type="number" id="input3" name="timer" value={formData.timer} onChange={handleChange}/>
@@ -168,3 +173,5 @@ export default function Menu() {
 
   );
 }
+
+
